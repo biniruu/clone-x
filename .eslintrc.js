@@ -14,7 +14,6 @@ module.exports = {
    *
    * eslint:recommended : eslint 추천 rule set
    * next/core-web-vitals : create next app으로 프로젝트 시작 시 기본 설정
-   * plugin:@tanstack/eslint-plugin-query/recommended : tanstack query (react query) 추천 rule set
    * plugin:@typescript-eslint/recommended-type-checked : 타입스크립트 추천 룰셋 {@link https://typescript-eslint.io/linting/typed-linting/}
    * plugin:import/recommended : eslint-plugin-import 추천 rule set
    * plugin:import/typescript : eslint-plugin-import 플러그인
@@ -23,12 +22,10 @@ module.exports = {
    * plugin:react-hooks/recommended
    * plugin:react/jsx-runtime : If you are using the new JSX transform from React 17, you should enable this
    * plugin:react/recommended
-   * plugin:storybook/recommended : 스토리북 추천 rule set
    */
   extends: [
     'eslint:recommended',
     'next/core-web-vitals',
-    'plugin:@tanstack/eslint-plugin-query/recommended',
     'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:import/recommended',
     'plugin:import/typescript',
@@ -37,7 +34,6 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react/recommended',
-    'plugin:storybook/recommended',
   ],
   overrides: [
     {
