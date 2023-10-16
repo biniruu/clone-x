@@ -20,7 +20,7 @@
   // function
   // =========
   "arrow function": {
-    "scope": "javascript",
+    "scope": "javascript, javascriptreact",
     "prefix": "arr",
     "body": [
       "($1) => {", //
@@ -30,7 +30,7 @@
     "description": "Add arrow function"
   },
   "arrow function (ts)": {
-    "scope": "typescript",
+    "scope": "typescript, typescriptreact",
     "prefix": "arr",
     "body": [
       "($1: ${2:any}) => {", //
