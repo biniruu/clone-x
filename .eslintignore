@@ -1,0 +1,5 @@
+# files
+**/tsconfig.json
+
+# paths
+node_modules/
