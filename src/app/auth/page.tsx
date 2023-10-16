@@ -1,5 +1,7 @@
+import AuthForm from 'app/components/AuthForm'
+
 function Auth() {
-  return <div>Auth</div>
+  return <AuthForm />
 }
 
 export default Auth
