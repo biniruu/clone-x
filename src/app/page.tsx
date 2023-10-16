@@ -1,7 +1,12 @@
+import Navigation from './components/Navigation'
+
 export default function Home() {
   return (
-    <main>
-      <div>main</div>
-    </main>
+    <>
+      <aside>
+        <Navigation />
+      </aside>
+      <main></main>
+    </>
   )
 }
