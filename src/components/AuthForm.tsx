@@ -3,7 +3,7 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { SyntheticEvent } from 'react'
 
-import { Auth } from 'app/utils/firebaseSDK'
+import { Auth } from 'utils/firebaseSDK'
 
 interface CreateWithUser {
   email: string
