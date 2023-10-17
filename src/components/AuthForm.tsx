@@ -13,6 +13,15 @@ interface CreateUser {
   password: string
 }
 
+interface FormData {
+  email: {
+    value: string
+  }
+  password: {
+    value: string
+  }
+}
+
 function AuthForm() {
   const router = useRouter()
 
@@ -34,10 +43,7 @@ function AuthForm() {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
-    const target = e.target as typeof e.target & {
-      email: { value: string }
-      password: { value: string }
-    }
+    const target = e.target as typeof e.target & FormData
     const email = target.email.value
     const password = target.password.value
     void createUser({ email, password })
