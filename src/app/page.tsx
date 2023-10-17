@@ -6,7 +6,7 @@ export default function Home() {
       <aside>
         <Navigation />
       </aside>
-      <main></main>
+      <main>This is the main page.</main>
     </>
   )
 }
