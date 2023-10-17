@@ -34,14 +34,12 @@ function Auth() {
   }
 
   return (
-    <div>
+    <main className="flex flex-col">
       <AuthForm />
-      <div>
-        <button name="google" onClick={signInWithSocialAccount} className="text-white">
-          google sign in
-        </button>
-      </div>
-    </div>
+      <button name="google" onClick={signInWithSocialAccount} className="text-white capitalize">
+        google sign in
+      </button>
+    </main>
   )
 }
 
