@@ -8,6 +8,7 @@ import Navigation from '../components/Navigation'
 
 import authStateAtom from 'recoil/authState'
 
+// TODO: 로그인 한 이후에는 새로고침하더라도 로그인 상태를 유지하도록 구현
 export default function Home() {
   const router = useRouter()
 

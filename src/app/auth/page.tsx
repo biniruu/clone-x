@@ -14,6 +14,7 @@ const providers = {
   google: GoogleAuth,
 }
 
+// TODO: 로그인과 회원가입을 분리
 function Auth() {
   const router = useRouter()
 
