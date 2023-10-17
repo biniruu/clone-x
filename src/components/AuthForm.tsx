@@ -1,6 +1,6 @@
 'use client'
 
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { AuthError, createUserWithEmailAndPassword } from 'firebase/auth'
 import { SyntheticEvent, useRef } from 'react'
 
 import { Auth } from 'utils/firebaseSDK'
@@ -19,8 +19,8 @@ function AuthForm() {
       await createUserWithEmailAndPassword(Auth, email, password)
       formRef.current?.reset()
     } catch (error) {
-      const err = error as Error
-      console.error(err)
+      const err = error as AuthError
+      console.error(err.code)
     }
   }
 
