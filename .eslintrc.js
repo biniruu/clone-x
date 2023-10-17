@@ -182,6 +182,7 @@ module.exports = {
      * ban-ts-comment : 설명을 추가하는 조건으로 @ts-expect-error, @ts-ignore, @ts-nocheck, @ts-check 주석을 허용
      * no-explicit-any
      * no-floating-promises
+     * no-misused-promises : void를 반환 받을 것으로 예상되는 곳(함수 호출부)에서 Promise 객체를 반환 받았을 때 에러 발생. attribute는 jsx 외 다른 로직에서 쓰이는 경우가 없기 때문에 false로 설정
      * no-unsafe-argument
      * no-unsafe-assignment : any 타입 사용 시 알림을 띄움
      * no-unsafe-call
@@ -208,6 +209,14 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-floating-promises': 'warn',
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      {
+        checksVoidReturn: {
+          attributes: false,
+        },
+      },
+    ],
     '@typescript-eslint/no-unsafe-argument': 'error',
     '@typescript-eslint/no-unsafe-assignment': 'error',
     '@typescript-eslint/no-unsafe-call': 'error',
