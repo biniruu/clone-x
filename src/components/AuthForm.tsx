@@ -3,7 +3,9 @@
 import { AuthError, createUserWithEmailAndPassword } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import { SyntheticEvent, useRef } from 'react'
+import { useSetRecoilState } from 'recoil'
 
+import authStateAtom from 'recoil/authState'
 import { auth } from 'utils/firebaseSDK'
 
 interface CreateUser {
@@ -12,13 +14,17 @@ interface CreateUser {
 }
 
 function AuthForm() {
-  const formRef = useRef<HTMLFormElement>(null)
   const router = useRouter()
+
+  const setAuthState = useSetRecoilState(authStateAtom)
+
+  const formRef = useRef<HTMLFormElement>(null)
 
   const createUser = async ({ email, password }: CreateUser) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password)
       formRef.current?.reset()
+      setAuthState(true)
       router.push('/')
     } catch (error) {
       const err = error as AuthError
