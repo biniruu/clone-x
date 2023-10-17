@@ -11,7 +11,6 @@ interface CreateUser {
   password: string
 }
 
-// eslint-disable-next-line @typescript-eslint/require-await
 function AuthForm() {
   const formRef = useRef<HTMLFormElement>(null)
   const router = useRouter()
