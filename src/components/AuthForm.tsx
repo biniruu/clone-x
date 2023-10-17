@@ -5,7 +5,7 @@ import { SyntheticEvent, useRef } from 'react'
 
 import { Auth } from 'utils/firebaseSDK'
 
-interface CreateWithUser {
+interface CreateUser {
   email: string
   password: string
 }
@@ -14,7 +14,7 @@ interface CreateWithUser {
 function AuthForm() {
   const formRef = useRef<HTMLFormElement>(null)
 
-  const createUser = async ({ email, password }: CreateWithUser) => {
+  const createUser = async ({ email, password }: CreateUser) => {
     try {
       await createUserWithEmailAndPassword(Auth, email, password)
       formRef.current?.reset()
