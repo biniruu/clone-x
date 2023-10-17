@@ -4,7 +4,7 @@ import { AuthError, createUserWithEmailAndPassword } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import { SyntheticEvent, useRef } from 'react'
 
-import { Auth } from 'utils/firebaseSDK'
+import { auth } from 'utils/firebaseSDK'
 
 interface CreateUser {
   email: string
@@ -17,7 +17,7 @@ function AuthForm() {
 
   const createUser = async ({ email, password }: CreateUser) => {
     try {
-      await createUserWithEmailAndPassword(Auth, email, password)
+      await createUserWithEmailAndPassword(auth, email, password)
       formRef.current?.reset()
       router.push('/')
     } catch (error) {
