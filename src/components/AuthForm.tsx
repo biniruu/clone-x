@@ -1,6 +1,7 @@
 'use client'
 
 import { AuthError, createUserWithEmailAndPassword } from 'firebase/auth'
+import { useRouter } from 'next/navigation'
 import { SyntheticEvent, useRef } from 'react'
 
 import { Auth } from 'utils/firebaseSDK'
@@ -13,11 +14,13 @@ interface CreateUser {
 // eslint-disable-next-line @typescript-eslint/require-await
 function AuthForm() {
   const formRef = useRef<HTMLFormElement>(null)
+  const router = useRouter()
 
   const createUser = async ({ email, password }: CreateUser) => {
     try {
       await createUserWithEmailAndPassword(Auth, email, password)
       formRef.current?.reset()
+      router.push('/')
     } catch (error) {
       const err = error as AuthError
       console.error(err.code)
