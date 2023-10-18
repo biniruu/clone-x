@@ -2,7 +2,7 @@
 
 import { AuthError, createUserWithEmailAndPassword } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
-import { SyntheticEvent, useRef } from 'react'
+import { useRef, type SyntheticEvent } from 'react'
 import { useSetRecoilState } from 'recoil'
 
 import authStateAtom from 'recoil/authState'

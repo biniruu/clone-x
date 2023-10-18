@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { RecoilRoot } from 'recoil'
 
 function RecoilStateProvider({ children }: { children: ReactNode }) {

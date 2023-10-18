@@ -2,7 +2,7 @@
 
 import { AuthError, signInWithPopup } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
-import { FormEvent } from 'react'
+import { type FormEvent } from 'react'
 import { useSetRecoilState } from 'recoil'
 
 import AuthForm from 'components/AuthForm'
