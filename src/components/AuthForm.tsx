@@ -51,7 +51,7 @@ function AuthForm() {
 
   return (
     <form ref={formRef} className="flex flex-col justify-start mb-4" onSubmit={handleSubmit}>
-      <input type="text" placeholder="Email" name="email" className="text-black mb-4" />
+      <input type="email" placeholder="Email" name="email" className="text-black mb-4" />
       <input type="password" placeholder="Password" name="password" className="text-black mb-4" />
       <button type="submit" className="capitalize">
         sign in
