@@ -1,16 +1,10 @@
 'use client'
 
-import { AuthError, createUserWithEmailAndPassword } from 'firebase/auth'
-import { useRouter } from 'next/navigation'
-import { useRef, type SyntheticEvent } from 'react'
-import { useSetRecoilState } from 'recoil'
+import { RefObject, type SyntheticEvent } from 'react'
 
-import authStateAtom from 'recoil/authState'
-import { auth } from 'utils/firebaseSDK'
-
-interface CreateUser {
-  email: string
-  password: string
+interface Props {
+  createUser: (data: { email: string; password: string }) => Promise<void>
+  formRef: RefObject<HTMLFormElement>
 }
 
 interface FormData {
@@ -22,25 +16,7 @@ interface FormData {
   }
 }
 
-function AuthForm() {
-  const router = useRouter()
-
-  const setAuthState = useSetRecoilState(authStateAtom)
-
-  const formRef = useRef<HTMLFormElement>(null)
-
-  const createUser = async ({ email, password }: CreateUser) => {
-    try {
-      await createUserWithEmailAndPassword(auth, email, password)
-      formRef.current?.reset()
-      setAuthState(true)
-      router.push('/')
-    } catch (error) {
-      const err = error as AuthError
-      console.error(err.code)
-    }
-  }
-
+function AuthForm({ createUser, formRef }: Props) {
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
     const target = e.target as typeof e.target & FormData

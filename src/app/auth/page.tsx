@@ -1,8 +1,8 @@
 'use client'
 
-import { AuthError, signInWithPopup } from 'firebase/auth'
+import { AuthError, createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
-import { type FormEvent } from 'react'
+import { useRef, type FormEvent } from 'react'
 import { useSetRecoilState } from 'recoil'
 
 import AuthForm from 'components/AuthForm'
@@ -14,11 +14,30 @@ const providers = {
   google: GoogleAuth,
 }
 
+interface CreateUser {
+  email: string
+  password: string
+}
+
 // TODO: 로그인과 회원가입을 분리
 function Auth() {
   const router = useRouter()
 
+  const formRef = useRef<HTMLFormElement>(null)
+
   const setAuthState = useSetRecoilState(authStateAtom)
+
+  const createUser = async ({ email, password }: CreateUser) => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password)
+      formRef.current?.reset()
+      setAuthState(true)
+      router.push('/')
+    } catch (error) {
+      const err = error as AuthError
+      console.error(err.code)
+    }
+  }
 
   const authWithProvider = async (name: string) => {
     const provider = providers[name as keyof typeof providers]
@@ -41,7 +60,7 @@ function Auth() {
 
   return (
     <main className="flex flex-col">
-      <AuthForm />
+      <AuthForm createUser={createUser} formRef={formRef} />
       <button name="google" onClick={signInWithSocialAccount} className="text-white capitalize">
         google sign in
       </button>
