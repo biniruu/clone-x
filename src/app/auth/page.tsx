@@ -27,11 +27,16 @@ function Auth() {
 
   const setAuthState = useSetRecoilState(authStateAtom)
 
+  const resetForm = () => formRef.current?.reset()
+
+  const setUserId = (uid: string) => localStorage.setItem('user', uid)
+
   const createUser = async ({ email, password }: CreateUser) => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password)
-      formRef.current?.reset()
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
       setAuthState(true)
+      setUserId(userCredential.user.uid)
+      resetForm()
       router.push('/')
     } catch (error) {
       const err = error as AuthError
@@ -43,8 +48,10 @@ function Auth() {
     const provider = providers[name as keyof typeof providers]
 
     try {
-      await signInWithPopup(auth, provider)
+      const userCredential = await signInWithPopup(auth, provider)
+      setUserId(userCredential.user.uid)
       setAuthState(true)
+      resetForm()
       router.push('/')
     } catch (error) {
       const err = error as AuthError
