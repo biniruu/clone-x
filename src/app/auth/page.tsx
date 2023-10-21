@@ -3,10 +3,8 @@
 import { AuthError, createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import { useRef, type FormEvent } from 'react'
-import { useSetRecoilState } from 'recoil'
 
 import AuthForm from 'components/AuthForm'
-import authStateAtom from 'recoil/authState'
 import { GoogleAuth } from 'utils/authWithSocialAccounts'
 import { auth } from 'utils/firebaseSDK'
 
@@ -25,16 +23,14 @@ function Auth() {
 
   const formRef = useRef<HTMLFormElement>(null)
 
-  const setAuthState = useSetRecoilState(authStateAtom)
-
   const resetForm = () => formRef.current?.reset()
 
+  // TODO: 보안 문제를 일으킬 수 있는 부분 개선
   const setUserId = (uid: string) => localStorage.setItem('user', uid)
 
   const createUser = async ({ email, password }: CreateUser) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password)
-      setAuthState(true)
       setUserId(userCredential.user.uid)
       resetForm()
       router.push('/')
@@ -50,7 +46,6 @@ function Auth() {
     try {
       const userCredential = await signInWithPopup(auth, provider)
       setUserId(userCredential.user.uid)
-      setAuthState(true)
       resetForm()
       router.push('/')
     } catch (error) {
